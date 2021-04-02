@@ -22,7 +22,7 @@ def get_model_accuracy(confusion_matrix):
 
 def mlflow_record(n_estimator, max_depth, min_samples_split):
    # remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
-    mlflow.set_tracking_uri(remote_server_uri)
+   # mlflow.set_tracking_uri(remote_server_uri)
     mlflow.set_experiment("pokemon-experiment")
     with mlflow.start_run():
         # create a random forest classifier
