@@ -7,6 +7,7 @@ import warnings
 import numpy as np
 import sys
 import os
+from pprint import pprint
 
 import logging
 
@@ -14,45 +15,39 @@ logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
 
 
-# calculate an accuracy from the confusion matrix
-def get_model_accuracy(confusion_matrix):
-    diagonal_sum = confusion_matrix.trace()
-    sum_of_all_elements = confusion_matrix.sum()
-    return diagonal_sum / sum_of_all_elements
+# Get the auto logged metrics
+def fetch_logged_data(run_id):
+    client = mlflow.tracking.MlflowClient()
+    data = client.get_run(run_id).data
+    tags = {k: v for k, v in data.tags.items() if not k.startswith("mlflow.")}
+    artifacts = [f.path for f in client.list_artifacts(run_id, "model")]
+    return data.params, data.metrics, tags, artifacts
 
 
 def mlflow_record(n_estimator, max_depth, min_samples_split):
-
     remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
-    experiment_name="test"
+    experiment_name = "test"
     # mlflow.set_tracking_uri(remote_server_uri)
     # mlflow.set_experiment(experiment_name)
     os.environ["MLFLOW_TRACKING_URI"] = remote_server_uri
-    os.environ["MLFLOW_EXPERIMENT_NAME"]=experiment_name
-    with mlflow.start_run():
+    os.environ["MLFLOW_EXPERIMENT_NAME"] = experiment_name
+    # enable autologging
+    mlflow.sklearn.autolog()
+    with mlflow.start_run() as run:
         # create a random forest classifier
         rf_clf = RandomForestClassifier(n_estimators=n_estimator, max_depth=max_depth,
                                         min_samples_split=min_samples_split,
                                         n_jobs=2, random_state=0)
         # train the model with training_data
         rf_clf.fit(train_X, train_y)
-        # predict testing data
-        predicts_val = rf_clf.predict(test_X)
-
-        # Generate a cm
-        cm = confusion_matrix(test_y, predicts_val)
-        model_accuracy = get_model_accuracy(cm)
-        print("RandomForest model (n_estimator=%f, max_depth=%f, min_samples_split=%f):" % (n_estimator, max_depth,
-                                                                                            min_samples_split))
-        print("accuracy: %f" % model_accuracy)
-        mlflow.log_param("data_source",data_url)
-        mlflow.log_param("n_estimator", n_estimator)
-        mlflow.log_param("max_depth", max_depth)
-        mlflow.log_param("min_samples_split", min_samples_split)
-        # log shap feature explanation extension. This will generate a graph of feature importance of the model
-        mlflow.shap.log_explanation(rf_clf.predict, test_X)
-        mlflow.log_metric("model_accuracy", model_accuracy)
-        mlflow.sklearn.log_model(rf_clf, "model")
+    # fetch logged data
+    params, metrics, tags, artifacts = fetch_logged_data(run.info.run_id)
+    pprint(params)
+    pprint(metrics)
+    pprint(tags)
+    pprint(artifacts)
+    # log shap feature explanation extension. This will generate a graph of feature importance of the model
+    mlflow.shap.log_explanation(rf_clf.predict, test_X)
 
 
 if __name__ == "__main__":
