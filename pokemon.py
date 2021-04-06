@@ -22,14 +22,15 @@ def get_model_accuracy(confusion_matrix):
 
 
 def mlflow_record(n_estimator, max_depth, min_samples_split):
-
+    # can be put as parameter of this function
     remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
-    experiment_name="test"
+    experiment_name = "test"
+    run_name = "run-2"
     # mlflow.set_tracking_uri(remote_server_uri)
     # mlflow.set_experiment(experiment_name)
     os.environ["MLFLOW_TRACKING_URI"] = remote_server_uri
-    os.environ["MLFLOW_EXPERIMENT_NAME"]=experiment_name
-    with mlflow.start_run():
+    os.environ["MLFLOW_EXPERIMENT_NAME"] = experiment_name
+    with mlflow.start_run(run_name=run_name):
         # create a random forest classifier
         rf_clf = RandomForestClassifier(n_estimators=n_estimator, max_depth=max_depth,
                                         min_samples_split=min_samples_split,
@@ -45,7 +46,7 @@ def mlflow_record(n_estimator, max_depth, min_samples_split):
         print("RandomForest model (n_estimator=%f, max_depth=%f, min_samples_split=%f):" % (n_estimator, max_depth,
                                                                                             min_samples_split))
         print("accuracy: %f" % model_accuracy)
-        mlflow.log_param("data_source",data_url)
+        mlflow.log_param("data_source", data_url)
         mlflow.log_param("n_estimator", n_estimator)
         mlflow.log_param("max_depth", max_depth)
         mlflow.log_param("min_samples_split", min_samples_split)
