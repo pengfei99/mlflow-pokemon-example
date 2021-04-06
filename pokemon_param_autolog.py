@@ -26,7 +26,7 @@ def fetch_logged_data(run_id):
 
 def mlflow_record(n_estimator, max_depth, min_samples_split):
     remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
-    experiment_name = "test"
+    experiment_name = "autolog"
     # mlflow.set_tracking_uri(remote_server_uri)
     # mlflow.set_experiment(experiment_name)
     os.environ["MLFLOW_TRACKING_URI"] = remote_server_uri

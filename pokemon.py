@@ -24,7 +24,7 @@ def get_model_accuracy(confusion_matrix):
 def mlflow_record(n_estimator, max_depth, min_samples_split):
     # can be put as parameter of this function
     remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
-    experiment_name = "test"
+    experiment_name = "test1"
     run_name = "run-2"
     # mlflow.set_tracking_uri(remote_server_uri)
     # mlflow.set_experiment(experiment_name)
