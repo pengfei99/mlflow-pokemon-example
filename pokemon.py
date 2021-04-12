@@ -44,7 +44,7 @@ def mlflow_record(n_estimator, max_depth, min_samples_split):
         print("RandomForest model (n_estimator=%f, max_depth=%f, min_samples_split=%f):" % (n_estimator, max_depth,
                                                                                             min_samples_split))
         print("accuracy: %f" % model_accuracy)
-        mlflow.log_param("data_source", data_url)
+        mlflow.log_param("data_url", data_url)
         mlflow.log_param("n_estimator", n_estimator)
         mlflow.log_param("max_depth", max_depth)
         mlflow.log_param("min_samples_split", min_samples_split)
@@ -54,10 +54,25 @@ def mlflow_record(n_estimator, max_depth, min_samples_split):
         mlflow.sklearn.log_model(rf_clf, "model")
 
 
+def prepare_data(data_url):
+    # read data as df
+    try:
+        input_df = pd.read_csv(data_url, index_col=0)
+    except Exception as e:
+        logger.exception(
+            "Unable to read data from the giving path, check your data location. Error: %s", e
+        )
+    # Prepare data for ml model
+    label = input_df.legendary
+    feature = input_df.drop(['legendary', 'generation', 'total'], axis=1).select_dtypes(exclude=['object'])
+    return feature, label
+
+
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(40)
-
+    # base line data
+    base_url = "https://minio.lab.sspcloud.fr/pengfei/sspcloud-demo/pokemon-cleaned.csv"
     # Get experiment setting from cli
     remote_server_uri = str(sys.argv[1]) if len(sys.argv) > 1 else "http://pengfei.org:8000"
     experiment_name = str(sys.argv[2]) if len(sys.argv) > 2 else "test1"
@@ -72,20 +87,13 @@ if __name__ == "__main__":
     max_depth = int(sys.argv[6]) if len(sys.argv) > 6 else 5
     min_samples_split = int(sys.argv[7]) if len(sys.argv) > 7 else 2
 
-    # read data as df
-    try:
-        input_df = pd.read_csv(data_url, index_col=0)
-    except Exception as e:
-        logger.exception(
-            "Unable to read data from the giving path, check your data location. Error: %s", e
-        )
-    # Prepare data for ml model
-    label_data = input_df.legendary
-    label_sample = label_data.sample(5)
-    feature_data = input_df.drop(['legendary', 'generation', 'total'], axis=1).select_dtypes(exclude=['object'])
-    feature_sample = feature_data.sample(5)
     # split data into training_data and test_data
+    feature_data, label_data = prepare_data(data_url)
     train_X, test_X, train_y, test_y = train_test_split(feature_data, label_data, train_size=0.8, test_size=0.2,
                                                         random_state=0)
+    # get base data for validation
+    # base_feature, base_label = prepare_data(base_url)
+    # tr_X, test_base_X, tr_y, test_base_y = train_test_split(base_feature, base_label, train_size=0.9, test_size=0.1,
+    #                                                         random_state=0)
 
     mlflow_record(n_estimator, max_depth, min_samples_split)
