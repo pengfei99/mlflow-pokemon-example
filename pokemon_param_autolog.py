@@ -28,9 +28,9 @@ def mlflow_record(n_estimator, max_depth, min_samples_split):
     remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
     experiment_name = "autolog"
     # mlflow.set_tracking_uri(remote_server_uri)
-    # mlflow.set_experiment(experiment_name)
     os.environ["MLFLOW_TRACKING_URI"] = remote_server_uri
     os.environ["MLFLOW_EXPERIMENT_NAME"] = experiment_name
+    mlflow.set_experiment(experiment_name)
     # enable autologging
     mlflow.sklearn.autolog()
     with mlflow.start_run() as run:
@@ -46,8 +46,6 @@ def mlflow_record(n_estimator, max_depth, min_samples_split):
     pprint(metrics)
     pprint(tags)
     pprint(artifacts)
-    # log shap feature explanation extension. This will generate a graph of feature importance of the model
-    mlflow.shap.log_explanation(rf_clf.predict, test_X)
 
 
 if __name__ == "__main__":
@@ -76,6 +74,6 @@ if __name__ == "__main__":
     # Get hyper parameters from cli arguments
     n_estimator = int(sys.argv[1]) if len(sys.argv) > 1 else 10
     max_depth = int(sys.argv[2]) if len(sys.argv) > 2 else 5
-    min_samples_split = int(sys.argv[2]) if len(sys.argv) > 3 else 2
+    min_samples_split = int(sys.argv[3]) if len(sys.argv) > 3 else 2
 
     mlflow_record(n_estimator, max_depth, min_samples_split)
