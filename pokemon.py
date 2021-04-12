@@ -23,13 +23,11 @@ def get_model_accuracy(confusion_matrix):
 
 def mlflow_record(n_estimator, max_depth, min_samples_split):
     # can be put as parameter of this function
-    remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
-    experiment_name = "test1"
-    run_name = "run-2"
+
     # mlflow.set_tracking_uri(remote_server_uri)
-    # mlflow.set_experiment(experiment_name)
     os.environ["MLFLOW_TRACKING_URI"] = remote_server_uri
     os.environ["MLFLOW_EXPERIMENT_NAME"] = experiment_name
+    mlflow.set_experiment(experiment_name)
     with mlflow.start_run(run_name=run_name):
         # create a random forest classifier
         rf_clf = RandomForestClassifier(n_estimators=n_estimator, max_depth=max_depth,
@@ -59,9 +57,20 @@ def mlflow_record(n_estimator, max_depth, min_samples_split):
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(40)
-    data_url = (
-        "https://minio.lab.sspcloud.fr/pengfei/sspcloud-demo/pokemon-cleaned.csv"
-    )
+
+    # Get experiment setting from cli
+    remote_server_uri = str(sys.argv[1]) if len(sys.argv) > 1 else "http://pengfei.org:8000"
+    experiment_name = str(sys.argv[2]) if len(sys.argv) > 2 else "test1"
+    run_name = str(sys.argv[3]) if len(sys.argv) > 3 else "default"
+
+    # Get data path
+    data_url = str(sys.argv[4]) if len(
+        sys.argv) > 4 else "https://minio.lab.sspcloud.fr/pengfei/sspcloud-demo/pokemon-cleaned.csv"
+
+    # Get hyper parameters from cli arguments
+    n_estimator = int(sys.argv[5]) if len(sys.argv) > 5 else 10
+    max_depth = int(sys.argv[6]) if len(sys.argv) > 6 else 5
+    min_samples_split = int(sys.argv[7]) if len(sys.argv) > 7 else 2
 
     # read data as df
     try:
@@ -78,10 +87,5 @@ if __name__ == "__main__":
     # split data into training_data and test_data
     train_X, test_X, train_y, test_y = train_test_split(feature_data, label_data, train_size=0.8, test_size=0.2,
                                                         random_state=0)
-
-    # Get hyper parameters from cli arguments
-    n_estimator = int(sys.argv[1]) if len(sys.argv) > 1 else 10
-    max_depth = int(sys.argv[2]) if len(sys.argv) > 2 else 5
-    min_samples_split = int(sys.argv[2]) if len(sys.argv) > 3 else 2
 
     mlflow_record(n_estimator, max_depth, min_samples_split)
