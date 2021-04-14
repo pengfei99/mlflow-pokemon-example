@@ -49,7 +49,7 @@ def mlflow_record(n_estimator, max_depth, min_samples_split):
         mlflow.log_param("max_depth", max_depth)
         mlflow.log_param("min_samples_split", min_samples_split)
         # log shap feature explanation extension. This will generate a graph of feature importance of the model
-        mlflow.shap.log_explanation(rf_clf.predict, test_X)
+        # mlflow.shap.log_explanation(rf_clf.predict, test_X.sample(70))
         mlflow.log_metric("model_accuracy", model_accuracy)
         mlflow.sklearn.log_model(rf_clf, "model")
 
@@ -91,6 +91,7 @@ if __name__ == "__main__":
     feature_data, label_data = prepare_data(data_url)
     train_X, test_X, train_y, test_y = train_test_split(feature_data, label_data, train_size=0.8, test_size=0.2,
                                                         random_state=0)
+    print(len(test_X))
     # get base data for validation
     # base_feature, base_label = prepare_data(base_url)
     # tr_X, test_base_X, tr_y, test_base_y = train_test_split(base_feature, base_label, train_size=0.9, test_size=0.1,
