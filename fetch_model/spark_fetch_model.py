@@ -1,4 +1,3 @@
-import pyspark
 from pyspark.sql import SparkSession
 from pyspark import SparkFiles
 import mlflow
@@ -29,6 +28,7 @@ if __name__ == "__main__":
     sdf.show(5)
     row_number = sdf.count()
     print(row_number)
+
     # Load model as a Spark UDF.
     model_name = "pokemon-sklearn"
     version = '3'
