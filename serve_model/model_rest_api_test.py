@@ -5,10 +5,14 @@ import logging
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
 
-host = '127.0.0.1'
-port = '8001'
+# local host
+# host = '127.0.0.1'
+# port = '8001'
+# url = f'http://{host}:{port}/invocations'
 
-url = f'http://{host}:{port}/invocations'
+# remote host
+host = 'pokemon.lab.sspcloud.fr/'
+url = f'https://{host}/invocations'
 
 headers = {
     'Content-Type': 'application/json',
@@ -46,5 +50,3 @@ legendary_prediction = requests.post(url=url, headers=headers, data=legendary_js
 
 print(f'Normal Predictions: {normal_prediction.text}')
 print(f'Legendary Predictions: {legendary_prediction.text}')
-
-
