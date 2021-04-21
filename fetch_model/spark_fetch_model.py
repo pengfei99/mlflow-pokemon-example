@@ -14,11 +14,11 @@ def mute_spark_logs(sc):
 
 
 if __name__ == "__main__":
-    remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
-    experiment_name = "test"
-    run_name = "run-2"
+
+    # remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
+    remote_server_uri = "https://mlflow.lab.sspcloud.fr/"
     os.environ["MLFLOW_TRACKING_URI"] = remote_server_uri
-    os.environ["MLFLOW_EXPERIMENT_NAME"] = experiment_name
+
     data_url = (
         "https://minio.lab.sspcloud.fr/pengfei/sspcloud-demo/pokemon-cleaned.csv"
     )
@@ -30,8 +30,8 @@ if __name__ == "__main__":
     row_number = sdf.count()
     print(row_number)
     # Load model as a Spark UDF.
-    model_name = "pokemon-sklearn"
-    version = '3'
+    model_name = "test"
+    version = '2'
     # pyfunc.spark requires a spark session
     predict_func = mlflow.pyfunc.spark_udf(spark, model_uri=f"models:/{model_name}/{version}", result_type='string')
 

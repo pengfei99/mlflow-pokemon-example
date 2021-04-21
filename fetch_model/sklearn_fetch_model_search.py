@@ -7,11 +7,14 @@ logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
 
 # set up the server url and experiment name
-remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
-experiment_name = "test"
-run_name = "run-2"
-os.environ["MLFLOW_TRACKING_URI"] = remote_server_uri
+# remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
+
+remote_server_uri = "https://mlflow.lab.sspcloud.fr/"
+
+experiment_name = "test-2"
 os.environ["MLFLOW_EXPERIMENT_NAME"] = experiment_name
+
+os.environ["MLFLOW_TRACKING_URI"] = remote_server_uri
 
 # get the data
 data_url = (
@@ -26,10 +29,12 @@ except Exception as e:
 
 ## prepare sample data
 # Prepare data for ml model testing
-legendary_pokemon=input_df[input_df["legendary"] == True]
-legendary_sample=legendary_pokemon.sample(5).drop(['legendary', 'generation', 'total'], axis=1).select_dtypes(exclude=['object'])
-normal_pokemon=input_df[input_df["legendary"] == False]
-normal_sample=normal_pokemon.sample(5).drop(['legendary', 'generation', 'total'], axis=1).select_dtypes(exclude=['object'])
+legendary_pokemon = input_df[input_df["legendary"] == True]
+legendary_sample = legendary_pokemon.sample(5).drop(['legendary', 'generation', 'total'], axis=1).select_dtypes(
+    exclude=['object'])
+normal_pokemon = input_df[input_df["legendary"] == False]
+normal_sample = normal_pokemon.sample(5).drop(['legendary', 'generation', 'total'], axis=1).select_dtypes(
+    exclude=['object'])
 print(legendary_sample)
 print(normal_sample)
 

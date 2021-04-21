@@ -49,7 +49,7 @@ def mlflow_record(n_estimator, max_depth, min_samples_split):
         mlflow.log_param("max_depth", max_depth)
         mlflow.log_param("min_samples_split", min_samples_split)
         # log shap feature explanation extension. This will generate a graph of feature importance of the model
-        # mlflow.shap.log_explanation(rf_clf.predict, test_X.sample(70))
+        mlflow.shap.log_explanation(rf_clf.predict, test_X.sample(70))
         mlflow.log_metric("model_accuracy", model_accuracy)
         mlflow.sklearn.log_model(rf_clf, "model")
 

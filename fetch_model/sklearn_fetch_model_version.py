@@ -6,12 +6,15 @@ import logging
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
 
-# set up the server url and experiment name
-remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
-experiment_name = "test"
-run_name = "run-2"
+# set up the server url and experiment name for local server
+# remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
+# experiment_name = "test"
+
+# set up the server url and experiment name for remote k8s server
+remote_server_uri = "https://mlflow.lab.sspcloud.fr/"
+
+
 os.environ["MLFLOW_TRACKING_URI"] = remote_server_uri
-os.environ["MLFLOW_EXPERIMENT_NAME"] = experiment_name
 
 # get the data
 data_url = (
@@ -36,8 +39,8 @@ print(normal_sample)
 # In this example, We will fetch a model based on its version, when you add a run to model repo, you can choose a
 # specific name, if empty, the default numeric name will be given which starts from 1.
 
-model_name = "pokemon-sklearn"
-version = '3'
+model_name = "test"
+version = '2'
 
 model = mlflow.pyfunc.load_model(
     model_uri=f"models:/{model_name}/{version}"

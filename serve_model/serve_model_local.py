@@ -2,11 +2,12 @@ import subprocess
 import os
 
 
-remote_server_uri = "http://pengfei.org:8000"  # set to your server URI
+# remote_server_uri = "http://pengfei.org:8000"
+remote_server_uri = "https://mlflow.lab.sspcloud.fr/"
 os.environ["MLFLOW_TRACKING_URI"] = remote_server_uri
 
-model_name = "pokemon-sklearn"
-version = '3'
+model_name = "test"
+version = '2'
 
 model_uri=f"models:/{model_name}/{version}"
 print(model_uri)
