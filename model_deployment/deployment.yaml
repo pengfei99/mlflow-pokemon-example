@@ -1,0 +1,57 @@
+# Creating MLflow deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow-model-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlflow-model-deployment
+  template:
+    metadata:
+      labels:
+        app: mlflow-model-deployment
+    spec:
+      containers:
+        - name: mlflow-deployment
+          image: liupengfei99/mlflow-deployment
+          imagePullPolicy: Always
+          command: ["mlflow", "models","serve"]
+          args:
+            - --host=0.0.0.0
+            - --port=8000
+            - --model-uri=models:/$(MLFLOW_MODEL_NAME)/$(MLFLOW_MODEL_STAGE)
+            - --workers=8 # default Gunicorn worker process number is 4
+          env:
+            # env var for s3 connexion
+            - name: MLFLOW_S3_ENDPOINT_URL
+              value: https://minio.lab.sspcloud.fr
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: mlflow-minio-cred
+                  key: accessKey
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mlflow-minio-cred
+                  key: secretKey
+            - name: AWS_DEFAULT_REGION
+              value: us-east-1
+            - name: MLFLOW_S3_BUCKET_NAME
+              value: projet-mlflow-registry
+            - name: MLFLOW_S3_PATH
+              value: dev-models-repo
+            # env var for setting mlflow model registry server
+            - name: MLFLOW_TRACKING_URI
+              value: https://mlflow.lab.sspcloud.fr
+            # env var for setting models uri which will be deployed
+            - name: MLFLOW_MODEL_NAME
+              value: test
+            - name: MLFLOW_MODEL_STAGE
+              value: Production
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
