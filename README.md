@@ -68,11 +68,9 @@ shows an example of our data pipeline.
 
 # Data and model
 
-The full cleaned dataset can be found
+The full cleaned dataset can be found [here](https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-cleaned.csv)
 
-[here]: https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-cleaned.csv
-
-The source codes on how to train, track and deploy model can be found [here] (https://github.com/pengfei99/mlflow-pokemon-example.git)
+The source codes on how to train, track and deploy model can be found [here](https://github.com/pengfei99/mlflow-pokemon-example.git)
 
 To use our newly deployed model, you can use the following curl command to query our web service
 
