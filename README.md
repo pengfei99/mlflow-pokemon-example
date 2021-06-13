@@ -46,7 +46,6 @@ We can search data by their name, type, owner, etc. Figure-4 shows an example of
 
 If the data steward has configured the classification meta-data, we can even search data by the pokemon generation.
 Figure-5 shows an example of search by pokemon generation.
-<img src="" style="zoom:60%;" />
 ![Filter search result](https://minio.lab.sspcloud.fr/pengfei/diffusion/pokemon/atlas_search_by_class.png)
 **Figure-5:**  Search data by using pokemon generation
 
