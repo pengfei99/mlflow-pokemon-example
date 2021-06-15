@@ -1,33 +1,54 @@
 # Pokemon Classification
-This project trained a RandomForest model to classify the Pokemon(i.e. Legendary, Non-legendary). Then we apply the model in an application web and provide a web service api.
+This project trained a RandomForest model to classify the Pokemon(i.e. Legendary, Non-legendary). 
+Then we apply the model in an application web and provide a web service api.
+
 ## Project summary
-This project uses the features of pokemon such as attack, defence, speed, etc. to train a RandomForest model to classify and predict if a pokemon is legendary or not. And we also want to the weights of each feature. At last, to put this model in production, we decide to offer a web service, so everyone can test if their pokemon is legendary or not.
+This project uses the features of pokemon such as attack, defence, speed, etc. to train a 
+RandomForest model to classify and predict if a pokemon is legendary or not. And we also want to know 
+the weights of each feature. At last, to put this model into production, we decide to offer a web service, 
+so everyone can test if their pokemon is legendary or not.
+
 ## SSP Datalab
-This project is originally developed as a pure python project without any ML Ops supports. So it's hard to do continues integration(CI), continues deployment(CD) and continues training(CT). After we migrate this project to SSP Datalab. We take advantage of the data management and ML Ops service that are provided by the platform. Here we want to highlight some benefits:
-1.Improved significantly the model performance
-2.Shortened the model development life cycle
-3.Automatize the model deployment process
+This project is originally developed as a pure python project without any ML Ops supports. So it's hard to do 
+continues integration(CI), continues deployment(CD) and continues training(CT). After we migrate this 
+project to SSP Datalab. We take the advantage of many services that are provided by the
+platform. Here we want to highlight three benefits:
+
+1. Improved significantly the model performance
+2. Shortened the model development life cycle
+3. Automatize the model deployment process
 
 ### ML Ops service inside Datalab
-When you work as a team to develop a model, you must experience the pain of logging the model and how the model (e.g. hyper-parameter settings, training dataset location, etc.) is trained. We can apply CI on our model code easily by using tools such as GitHub. But we know that code is only one factor which can impact your model performance. And most time, the hyper-parameter setting and training dataset have even more impact compare to the model code. Datalab provides a service called Mlflow which address all these issues.
+When you work as a team to develop a model, you must experience the pain of logging the model and how the model 
+(e.g. hyper-parameter settings, training dataset location, etc.) is trained. We can apply CI on our 
+model code easily by using tools such as GitHub. But we know that code is only one factor which can 
+impact your model performance. And most time, the hyper-parameter setting and training dataset have 
+even more impact compare to the model code. Datalab provides a service called Mlflow which address 
+all these issues.
 
 #### Model tracking
 
-For each trained model, it allows us to track feature importance, hyper-parameter settings, the training data location, their validation metrics(e.g. accuracy, ROC, AUC, etc.). In Figure-1, we show an example.
+For each trained model, it allows us to track feature importance, hyper-parameter settings, the training 
+data location, their validation metrics(e.g. accuracy, ROC, AUC, etc.). In Figure-1, we show an example of 
+the model tracking interface.
 ![Model tracking](https://minio.lab.sspcloud.fr/pengfei/diffusion/pokemon/pokemon_metric.PNG)
 **Figure-1:**  Model tracking
 
-We can also compare them between different models. In Figure-2, we show an example
+We can also compare them between different models. In Figure-2, we show an example of the model's metrics
+comparison.
 ![Model comparison](https://minio.lab.sspcloud.fr/pengfei/diffusion/pokemon/pokemon_mdoel_camparing.PNG)
 **Figure-2:**  Model comparison
 
-You can notice that, we have improved our model, and we are able to explain which parameter make the improvement possible. 
+You can notice that, we have improved our model, and we are able to explain which parameter make the 
+improvement possible. 
 
 #### Model deployment
 
-To deploy a model, we can set version and status to a model, and the deployment application can fetch the appropriate model based on this information. Figure-3 shows an example of our model which has four versions, one in production, one in development and two in archive.
+To deploy a model, we can set version and status to a model, and the deployment application can fetch the 
+appropriate model based on this information. Figure-3 shows an example of our model which has four versions, 
+one in production, one in development and two in archive.
 ![Model deployment](https://minio.lab.sspcloud.fr/pengfei/diffusion/pokemon/model_version.PNG)
-**Figure-3:**  Model deployment
+**Figure-3:**  Model version and status
 
 
 
