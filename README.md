@@ -31,12 +31,12 @@ all these issues.
 For each trained model, it allows us to track feature importance, hyper-parameter settings, the training 
 data location, their validation metrics(e.g. accuracy, ROC, AUC, etc.). In Figure-1, we show an example of 
 the model tracking interface.
-![Model tracking](https://minio.lab.sspcloud.fr/pengfei/diffusion/pokemon/pokemon_metric.PNG)
+![Model tracking](https://raw.githubusercontent.com/pengfei99/mlflow-pokemon-example/master/img/pokemon_metric.PNG)
 **Figure-1:**  Model tracking
 
 We can also compare them between different models. In Figure-2, we show an example of the model's metrics
 comparison.
-![Model comparison](https://minio.lab.sspcloud.fr/pengfei/diffusion/pokemon/pokemon_mdoel_camparing.PNG)
+![Model comparison](https://raw.githubusercontent.com/pengfei99/mlflow-pokemon-example/master/img/mdoel_camparing.PNG)
 **Figure-2:**  Model comparison
 
 You can notice that, we have improved our model, and we are able to explain which parameter make the 
@@ -47,7 +47,7 @@ improvement possible.
 To deploy a model, we can set version and status to a model, and the deployment application can fetch the 
 appropriate model based on this information. Figure-3 shows an example of our model which has four versions, 
 one in production, one in development and two in archive.
-![Model deployment](https://minio.lab.sspcloud.fr/pengfei/diffusion/pokemon/model_version.PNG)
+![Model deployment](https://raw.githubusercontent.com/pengfei99/mlflow-pokemon-example/master/img/model_version.PNG)
 **Figure-3:**  Model version and status
 
 
@@ -62,18 +62,18 @@ challenge to find the appropriate data to train your model. Fortunately , Datala
 called Atlas which allow us to find data easily. 
 
 We can search data by their name, type, owner, etc. Figure-4 shows an example of full text search.
-![Full text search](https://minio.lab.sspcloud.fr/pengfei/diffusion/pokemon/atlas_search_by_text.PNG)
+![Full text search](https://raw.githubusercontent.com/pengfei99/mlflow-pokemon-example/master/img/atlas_search_by_text.PNG)
 **Figure-4:**  Full text search
 
 If the data steward has configured the classification meta-data, we can even search data by the pokemon generation.
 Figure-5 shows an example of search by pokemon generation.
-![Filter search result](https://minio.lab.sspcloud.fr/pengfei/diffusion/pokemon/atlas_search_by_class.png)
+![Filter search result](https://raw.githubusercontent.com/pengfei99/mlflow-pokemon-example/master/img/atlas_search_by_class.png)
 **Figure-5:**  Search data by using pokemon generation
 
 After we found the data, we can know all the metadata about the data such as name, location, owner, size, creation date,
 etc. Figure-6 shows an example of the pokemon data metadata.
 
-![Pokemon metadata](https://minio.lab.sspcloud.fr/pengfei/diffusion/pokemon/atlas_data_detail.PNG)
+![Pokemon metadata](https://raw.githubusercontent.com/pengfei99/mlflow-pokemon-example/master/img/atlas_data_detail.PNG)
 **Figure-6:**  Pokemon metadata
 
 ### Workflow automation service inside Datalab
@@ -82,7 +82,7 @@ Datalab provides a workflow automation service, which allows us to run the compl
 any human intervention. We can receive notification when the job finished correctly, or warnings when the job failed. Figure-7
 shows an example of our data pipeline.
 
-![Pokemon workflow automation](https://minio.lab.sspcloud.fr/pengfei/diffusion/pokemon/pokemon_workflow.PNG)
+![Pokemon workflow automation](https://raw.githubusercontent.com/pengfei99/mlflow-pokemon-example/master/img/pokemon_workflow.PNG)
 
 **Figure-7:**  Pokemon workflow automation
 
