@@ -7,11 +7,11 @@ spec:
   arguments:
     parameters:
       - name: aws-access-id
-        value: "changeMe"
+        value: "7SB2RWES1TUUSPGPLFYJ"
       - name: aws-secret-key
-        value: "changeMe"
+        value: "Rx8Ers70WLkaSy4qp9g5TedoH8oe1kqIWdsFliit"
       - name: aws-session-token
-        value: "changeMe"
+        value: "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiI3U0IyUldFUzFUVVVTUEdQTEZZSiIsImFjciI6IjAiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJhdWQiOlsibWluaW8tZGF0YW5vZGUiLCJvbnl4aWEiLCJhY2NvdW50Il0sImF1dGhfdGltZSI6MTY0NDMwNjk3NywiYXpwIjoib255eGlhIiwiZW1haWwiOiJsaXUucGVuZ2ZlaUBob3RtYWlsLmZyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImV4cCI6MTY0NDkxMTc3NywiZmFtaWx5X25hbWUiOiJMaXUiLCJnaXZlbl9uYW1lIjoiUGVuZ2ZlaSIsImdyb3VwcyI6WyJmb3JtYXRpb24iLCJwcm9qZXQtb255eGlhIiwicmVsZXZhbmMiLCJzcGFyay1sYWIiLCJzc3BjbG91ZC1hZG1pbiJdLCJpYXQiOjE2NDQzMDY5NzgsImlzcyI6Imh0dHBzOi8vYXV0aC5sYWIuc3NwY2xvdWQuZnIvYXV0aC9yZWFsbXMvc3NwY2xvdWQiLCJqdGkiOiJkMGExOWZiMy1jMzdhLTRmNGEtOTRhNy01Y2JkMzllYzYzMDUiLCJsb2NhbGUiOiJmciIsIm5hbWUiOiJQZW5nZmVpIExpdSIsIm5vbmNlIjoiNjAzOTM5ZDQtNjhhZi00MWQ5LWEyZGItMDE1N2ZmOGZlOTNhIiwicG9saWN5Ijoic3Rzb25seSIsInByZWZlcnJlZF91c2VybmFtZSI6InBlbmdmZWkiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiQXRsYXNfcm9sZV9hZG1pbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZ3JvdXBzIGVtYWlsIiwic2Vzc2lvbl9zdGF0ZSI6IjUyNzE2MzY5LWIzZDQtNGQwYS05YWIyLTk1MGE3MTNhN2MxMiIsInNpZCI6IjUyNzE2MzY5LWIzZDQtNGQwYS05YWIyLTk1MGE3MTNhN2MxMiIsInN1YiI6IjQ3MzQ5MTI4LTRhNGMtNDIyNi1hNWIxLTY4MDgwMWFmNWEyYiIsInR5cCI6IkJlYXJlciJ9.ZOjC7tmTb2A2974VL41lL9PaWjAtnelabzxBOeqEitZWEO2AaYlpxa9ySEOiPF__GWuS79ZgtmRhZaKMJN9lAg"
       - name: aws-default-region
         value: "us-east-1"
       - name: aws-s3-endpoint
@@ -20,23 +20,22 @@ spec:
        # You can create it inside the datalab, and copy the url. Below is an example
        # https://pengfei-mlflow-7841853311341079041-mlflow-ihm.kub.sspcloud.fr/
       - name: mlflow-tracking-uri
-        value: 'changeMe'
+        value: 'https://user-pengfei-786489.kub.sspcloud.fr'
       - name: mlflow-experiment-name
         value: "pokemon"
       - name: mlflow-s3-url
         value: "https://minio.lab.sspcloud.fr"
-      - name: code-souce-repo
+      - name: code-source-repo
         value: "https://github.com/pengfei99/mlflow-pokemon-example.git"
       - name: model-training-conf-list
         value: |
           [
-            { "data": https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-partial.csv, "nestimator": 50, "maxDepth": 30,"minSamplesSplit": 2},
-            { "data": https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-partial.csv, "nestimator": 70, "maxDepth": 30,"minSamplesSplit": 2},
-            { "data": https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-new.csv, "nestimator": 50, "maxDepth": 30,"minSamplesSplit": 2},
-            { "data": https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-new.csv, "nestimator": 70, "maxDepth": 30,"minSamplesSplit": 2},
-            { "data": https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-cleaned.csv, "nestimator": 50, "maxDepth": 30,"minSamplesSplit": 2},
-            { "data": https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-cleaned.csv, "nestimator": 70, "maxDepth": 30,"minSamplesSplit": 2},
-           
+            { "data": "https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-partial.csv", "nestimator": 90, "maxDepth": 30,"minSamplesSplit": 2},
+            { "data": "https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-partial.csv", "nestimator": 70, "maxDepth": 30,"minSamplesSplit": 2},
+            { "data": "https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-new.csv", "nestimator": 50, "maxDepth": 30,"minSamplesSplit": 2},
+            { "data": "https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-new.csv", "nestimator": 70, "maxDepth": 30,"minSamplesSplit": 2},
+            { "data": "https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-cleaned.csv", "nestimator": 50, "maxDepth": 30,"minSamplesSplit": 2},
+            { "data": "https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-cleaned.csv", "nestimator": 70, "maxDepth": 30,"minSamplesSplit": 2} 
           ]
  
 
@@ -89,16 +88,9 @@ spec:
       container:
         image: liupengfei99/mlflow:master
         command: [sh, -c]
-        args: ["mlflow run -P remote_server_uri=$MLFLOW_TRACKING_URI -P experiment_name=$MLFLOW_EXPERIMENT_NAME
+        args: ["mlflow run $CODE_SOURCE_URI -P remote_server_uri=$MLFLOW_TRACKING_URI -P experiment_name=$MLFLOW_EXPERIMENT_NAME
                 -P data_url={{inputs.parameters.data}} -P n_estimator={{inputs.parameters.nestimator}}
                 -P max_depth={{inputs.parameters.maxDepth}} -P min_samples_split={{inputs.parameters.minSamplesSplit}}"]
-        resources:
-          requests:
-            memory: "4096Mi"
-            cpu: "4000m"
-          limits:
-            memory: "8192Mi"
-            cpu: "5000m"
         env:
           - name: AWS_SECRET_ACCESS_KEY
             value: "{{workflow.parameters.aws-secret-key}}"
@@ -116,4 +108,6 @@ spec:
             value: "{{workflow.parameters.mlflow-experiment-name}}"
           - name: MLFLOW_S3_ENDPOINT_URL
             value: "{{workflow.parameters.mlflow-s3-url}}"
+          - name: CODE_SOURCE_URI
+            value: "{{workflow.parameters.code-source-repo}}"
 
