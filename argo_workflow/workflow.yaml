@@ -7,11 +7,11 @@ spec:
   arguments:
     parameters:
       - name: aws-access-id
-        value: "7SB2RWES1TUUSPGPLFYJ"
+        value: ""
       - name: aws-secret-key
-        value: "Rx8Ers70WLkaSy4qp9g5TedoH8oe1kqIWdsFliit"
+        value: ""
       - name: aws-session-token
-        value: "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiI3U0IyUldFUzFUVVVTUEdQTEZZSiIsImFjciI6IjAiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJhdWQiOlsibWluaW8tZGF0YW5vZGUiLCJvbnl4aWEiLCJhY2NvdW50Il0sImF1dGhfdGltZSI6MTY0NDMwNjk3NywiYXpwIjoib255eGlhIiwiZW1haWwiOiJsaXUucGVuZ2ZlaUBob3RtYWlsLmZyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImV4cCI6MTY0NDkxMTc3NywiZmFtaWx5X25hbWUiOiJMaXUiLCJnaXZlbl9uYW1lIjoiUGVuZ2ZlaSIsImdyb3VwcyI6WyJmb3JtYXRpb24iLCJwcm9qZXQtb255eGlhIiwicmVsZXZhbmMiLCJzcGFyay1sYWIiLCJzc3BjbG91ZC1hZG1pbiJdLCJpYXQiOjE2NDQzMDY5NzgsImlzcyI6Imh0dHBzOi8vYXV0aC5sYWIuc3NwY2xvdWQuZnIvYXV0aC9yZWFsbXMvc3NwY2xvdWQiLCJqdGkiOiJkMGExOWZiMy1jMzdhLTRmNGEtOTRhNy01Y2JkMzllYzYzMDUiLCJsb2NhbGUiOiJmciIsIm5hbWUiOiJQZW5nZmVpIExpdSIsIm5vbmNlIjoiNjAzOTM5ZDQtNjhhZi00MWQ5LWEyZGItMDE1N2ZmOGZlOTNhIiwicG9saWN5Ijoic3Rzb25seSIsInByZWZlcnJlZF91c2VybmFtZSI6InBlbmdmZWkiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiQXRsYXNfcm9sZV9hZG1pbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZ3JvdXBzIGVtYWlsIiwic2Vzc2lvbl9zdGF0ZSI6IjUyNzE2MzY5LWIzZDQtNGQwYS05YWIyLTk1MGE3MTNhN2MxMiIsInNpZCI6IjUyNzE2MzY5LWIzZDQtNGQwYS05YWIyLTk1MGE3MTNhN2MxMiIsInN1YiI6IjQ3MzQ5MTI4LTRhNGMtNDIyNi1hNWIxLTY4MDgwMWFmNWEyYiIsInR5cCI6IkJlYXJlciJ9.ZOjC7tmTb2A2974VL41lL9PaWjAtnelabzxBOeqEitZWEO2AaYlpxa9ySEOiPF__GWuS79ZgtmRhZaKMJN9lAg"
+        value: ""
       - name: aws-default-region
         value: "us-east-1"
       - name: aws-s3-endpoint
