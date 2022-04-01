@@ -96,8 +96,9 @@ The source codes on how to train, track and deploy model can be found [here](htt
 To use our newly deployed model, you can use the following curl command to query our web service
 
 ```shell
-curl -X POST -H "Content-Type:application/json; format=pandas-split" --data \
-'{"columns":["hp","attack","defense","special_attack","special_defense","speed"],"index":[272,293,414,263,49],
-"data":[[80,70,70,90,100,70],[64,51,23,51,23,28],[70,94,50,94,50,66],[38,30,41,30,41,60],[70,65,60,90,75,90]]}' \
-https://pokemon.lab.sspcloud.fr/invocations ;
+curl -X 'GET' \
+  'https://pokemon.lab.sspcloud.fr/pokemon-type?hp=10&attack=10&defence=10&special_attack=10&special_defense=10&speed=10' \
+  -H 'accept: application/json'
 ```
+
+The full swagger doc of the api can be found [here](https://pokemon.lab.sspcloud.fr/docs) 
