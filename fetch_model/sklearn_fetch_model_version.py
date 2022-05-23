@@ -1,7 +1,8 @@
+import logging
+import os
+
 import mlflow.sklearn
 import pandas as pd
-import os
-import logging
 
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
@@ -12,7 +13,6 @@ logger = logging.getLogger(__name__)
 
 # set up the server url and experiment name for remote k8s server
 remote_server_uri = "https://mlflow.lab.sspcloud.fr/"
-
 
 os.environ["MLFLOW_TRACKING_URI"] = remote_server_uri
 
@@ -29,10 +29,12 @@ except Exception as e:
 
 ## prepare sample data
 # Prepare data for ml model testing
-legendary_pokemon=input_df[input_df["legendary"] == True]
-legendary_sample=legendary_pokemon.sample(5).drop(['legendary', 'generation', 'total'], axis=1).select_dtypes(exclude=['object'])
-normal_pokemon=input_df[input_df["legendary"] == False]
-normal_sample=normal_pokemon.sample(5).drop(['legendary', 'generation', 'total'], axis=1).select_dtypes(exclude=['object'])
+legendary_pokemon = input_df[input_df["legendary"] == True]
+legendary_sample = legendary_pokemon.sample(5).drop(['legendary', 'generation', 'total'], axis=1).select_dtypes(
+    exclude=['object'])
+normal_pokemon = input_df[input_df["legendary"] == False]
+normal_sample = normal_pokemon.sample(5).drop(['legendary', 'generation', 'total'], axis=1).select_dtypes(
+    exclude=['object'])
 print(legendary_sample)
 print(normal_sample)
 
