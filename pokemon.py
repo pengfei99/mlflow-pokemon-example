@@ -1,14 +1,13 @@
+import logging
+import sys
+import warnings
+
 import mlflow.sklearn
+import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
-import warnings
-import numpy as np
-import sys
-import os
-
-import logging
 
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
@@ -24,9 +23,6 @@ def get_model_accuracy(confusion_matrix):
 def mlflow_record(n_estimator, max_depth, min_samples_split):
     # can be put as parameter of this function
 
-    # mlflow.set_tracking_uri(remote_server_uri)
-    os.environ["MLFLOW_TRACKING_URI"] = remote_server_uri
-    os.environ["MLFLOW_EXPERIMENT_NAME"] = experiment_name
     mlflow.set_experiment(experiment_name)
     with mlflow.start_run(run_name=run_name):
         # create a random forest classifier
@@ -71,8 +67,9 @@ def prepare_data(data_url):
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(40)
-    # base line data
-    base_url = "https://minio.lab.sspcloud.fr/pengfei/sspcloud-demo/pokemon-cleaned.csv"
+    # default configuration
+    data_url = "https://minio.lab.sspcloud.fr/pengfei/sspcloud-demo/pokemon-cleaned.csv"
+
     # Get experiment setting from cli
     remote_server_uri = str(sys.argv[1]) if len(sys.argv) > 1 else "http://pengfei.org:8000"
     experiment_name = str(sys.argv[2]) if len(sys.argv) > 2 else "test1"
@@ -80,7 +77,7 @@ if __name__ == "__main__":
 
     # Get data path
     data_url = str(sys.argv[4]) if len(
-        sys.argv) > 4 else "https://minio.lab.sspcloud.fr/pengfei/sspcloud-demo/pokemon-cleaned.csv"
+        sys.argv) > 4 else data_url
 
     # Get hyper parameters from cli arguments
     n_estimator = int(sys.argv[5]) if len(sys.argv) > 5 else 10
