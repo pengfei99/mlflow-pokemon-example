@@ -9,7 +9,7 @@ spec:
       - name: aws-access-id
         value: ""
       - name: aws-secret-key
-        value: ""
+        value: "changeMe"
       - name: aws-session-token
         value: ""
       - name: aws-default-region
@@ -20,7 +20,7 @@ spec:
        # You can create it inside the datalab, and copy the url. Below is an example
        # https://pengfei-mlflow-7841853311341079041-mlflow-ihm.kub.sspcloud.fr/
       - name: mlflow-tracking-uri
-        value: 'https://user-pengfei-786489.kub.sspcloud.fr'
+        value: 'https://user-pengfei-531016.kub.sspcloud.fr/'
       - name: mlflow-experiment-name
         value: "pokemon"
       - name: mlflow-s3-url

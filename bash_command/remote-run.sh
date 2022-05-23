@@ -1,12 +1,6 @@
 #! /bin/bash
-unset AWS_SESSION_TOKEN
-export MLFLOW_S3_ENDPOINT_URL=https://minio.lab.sspcloud.fr
-export AWS_ACCESS_KEY_ID=mlflow
-export AWS_SECRET_ACCESS_KEY=changeMe
-export AWS_DEFAULT_REGION=us-east-1
-
-export MLFLOW_TRACKING_URI='http://pengfei.org:8000'
-export MLFLOW_EXPERIMENT_NAME="test-1"
+export MLFLOW_TRACKING_URI='https://user-pengfei-531016.kub.sspcloud.fr/'
+export MLFLOW_EXPERIMENT_NAME="pokemon"
 
 mlflow run git@github.com:pengfei99/mlflow-pokemon-example.git -P remote_server_uri=$MLFLOW_TRACKING_URI -P experiment_name=$MLFLOW_EXPERIMENT_NAME \
 -P data_url=https://minio.lab.sspcloud.fr/pengfei/mlflow-demo/pokemon-partial.csv \

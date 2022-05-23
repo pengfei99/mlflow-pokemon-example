@@ -1,11 +1,13 @@
 #! /bin/bash
 unset AWS_SESSION_TOKEN
 export MLFLOW_S3_ENDPOINT_URL=https://minio.lab.sspcloud.fr
+
 export AWS_ACCESS_KEY_ID=changeMe
 export AWS_SECRET_ACCESS_KEY=changeMe
 export AWS_DEFAULT_REGION=us-east-1
 
 export MLFLOW_CONDA_HOME='/home/pliu/anaconda3'
+
 export MLFLOW_TRACKING_URI='https://user-pengfei-531016.kub.sspcloud.fr/'
 export MLFLOW_EXPERIMENT_NAME="pokemon"
 
