@@ -22,5 +22,5 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 COPY ./requirements.txt /tmp/requirements.txt
 
 # install all the requirements
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /tmp/requirements.txt
 
