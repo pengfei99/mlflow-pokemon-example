@@ -6,10 +6,12 @@ authors = ["pengfei <liu.pengfei@hotmail.fr>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-mlflow = "^1.22"
-fastapi = "^0.70.1"
+mlflow = "^2.2.2"
+
+fastapi = "^0.94.1"
 scikit-learn = "^1.0.1"
-uvicorn = "^0.16.0"
+uvicorn = "^0.21.1"
+boto3 = "^1.26.93"
 
 [tool.poetry.dev-dependencies]
 
