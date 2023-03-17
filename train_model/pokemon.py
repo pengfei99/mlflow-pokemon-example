@@ -25,10 +25,14 @@ def run_workflow(tracking_server_url: str, mlflow_experiment_name: str, mlflow_r
                  min_samples_split: int):
     # Step1: Prepare data
     train_X, test_X, train_y, test_y = prepare_data(data_url)
-    # set up mlflow context
+    # set up mlflow context, if tracking server and experiment name is none
+    # the model tracking information will be stored locally in a folder called mlrun.
+    # To access it, you need to go to the parent folder of the mlrun and type `mlflow ui`
+    if tracking_server_url:
+        mlflow.set_tracking_uri(tracking_server_url)
     if mlflow_experiment_name:
-      mlflow.set_experiment(mlflow_experiment_name)
-    mlflow.set_tracking_uri(tracking_server_url)
+        mlflow.set_experiment(mlflow_experiment_name)
+
     with mlflow.start_run(run_name=mlflow_run_name):
         # create a random forest classifier
         rf_clf = RandomForestClassifier(n_estimators=n_estimator, max_depth=max_depth,
