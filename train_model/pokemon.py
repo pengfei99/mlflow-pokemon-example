@@ -20,12 +20,14 @@ def get_model_accuracy(cf_matrix):
     return diagonal_sum / sum_of_all_elements
 
 
-def run_workflow(mlflow_experiment_name: str, mlflow_run_name: str, data_url: str, n_estimator: int, max_depth: int,
+def run_workflow(tracking_server_url: str, mlflow_experiment_name: str, mlflow_run_name: str, data_url: str,
+                 n_estimator: int, max_depth: int,
                  min_samples_split: int):
     # Step1: Prepare data
     train_X, test_X, train_y, test_y = prepare_data(data_url)
     # set up mlflow context
     mlflow.set_experiment(mlflow_experiment_name)
+    mlflow.set_tracking_uri(tracking_server_url)
     with mlflow.start_run(run_name=mlflow_run_name):
         # create a random forest classifier
         rf_clf = RandomForestClassifier(n_estimators=n_estimator, max_depth=max_depth,
@@ -73,7 +75,7 @@ def main():
     warnings.filterwarnings("ignore")
     np.random.seed(40)
     # default configuration
-    default_mlflow_server_url = "https://mlflow.lab.sspcloud.fr"
+    default_mlflow_server_url = "https://user-pengfei-134963.user.lab.sspcloud.fr/"
     default_data_url = "https://minio.lab.sspcloud.fr/pengfei/sspcloud-demo/pokemon-cleaned.csv"
     default_experiment_name = "pokemon"
     default_run_name = "default"
@@ -98,7 +100,7 @@ def main():
 
     # split data into training_data and test_data
 
-    run_workflow(experiment_name, run_name, data_url, n_estimator, max_depth, min_samples_split)
+    run_workflow(remote_server_uri, experiment_name, run_name, data_url, n_estimator, max_depth, min_samples_split)
 
 
 if __name__ == "__main__":
