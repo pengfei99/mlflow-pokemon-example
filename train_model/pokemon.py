@@ -26,7 +26,8 @@ def run_workflow(tracking_server_url: str, mlflow_experiment_name: str, mlflow_r
     # Step1: Prepare data
     train_X, test_X, train_y, test_y = prepare_data(data_url)
     # set up mlflow context
-    mlflow.set_experiment(mlflow_experiment_name)
+    if mlflow_experiment_name:
+      mlflow.set_experiment(mlflow_experiment_name)
     mlflow.set_tracking_uri(tracking_server_url)
     with mlflow.start_run(run_name=mlflow_run_name):
         # create a random forest classifier
