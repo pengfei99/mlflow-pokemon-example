@@ -33,6 +33,7 @@ def run_workflow(tracking_server_url: str, mlflow_experiment_name: str, mlflow_r
     if mlflow_experiment_name:
         mlflow.set_experiment(mlflow_experiment_name)
 
+    # Step2: Tran the model within the mlflow context
     with mlflow.start_run(run_name=mlflow_run_name):
         # create a random forest classifier
         rf_clf = RandomForestClassifier(n_estimators=n_estimator, max_depth=max_depth,
@@ -46,16 +47,21 @@ def run_workflow(tracking_server_url: str, mlflow_experiment_name: str, mlflow_r
         # Generate a cm
         cm = confusion_matrix(test_y, predicts_val)
         model_accuracy = get_model_accuracy(cm)
-        print("RandomForest model (n_estimator=%f, max_depth=%f, min_samples_split=%f):" % (n_estimator, max_depth,
-                                                                                            min_samples_split))
+        print("RandomForest model (n_estimator=%f, max_depth=%f, min_samples_split=%f):" %
+              (n_estimator, max_depth, min_samples_split))
+
+        # step3: Track the model
         print("accuracy: %f" % model_accuracy)
+        # log the hyper-parameter to mlflow tracking server
         mlflow.log_param("data_url", data_url)
         mlflow.log_param("n_estimator", n_estimator)
         mlflow.log_param("max_depth", max_depth)
         mlflow.log_param("min_samples_split", min_samples_split)
         # log shap feature explanation extension. This will generate a graph of feature importance of the model
         # mlflow.shap.log_explanation(rf_clf.predict, test_X.sample(70))
+        # log the metric
         mlflow.log_metric("model_accuracy", model_accuracy)
+        # log the model
         mlflow.sklearn.log_model(rf_clf, "model")
 
 
