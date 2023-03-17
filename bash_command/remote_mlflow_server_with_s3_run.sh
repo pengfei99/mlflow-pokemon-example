@@ -1,6 +1,10 @@
 #! /bin/bash
+# here we suppose you have required s3 creds such as AWS_DEFAULT_REGION,
+# AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID and AWS_SESSION_TOKEN already
+# set in your env. If not you need to also export them in below script
+
 export MLFLOW_S3_ENDPOINT_URL='https://minio.lab.sspcloud.fr'
-export MLFLOW_TRACKING_URI='https://user-pengfei-531016.kub.sspcloud.fr/'
+export MLFLOW_TRACKING_URI='https://user-pengfei-134963.user.lab.sspcloud.fr/'
 export MLFLOW_EXPERIMENT_NAME="pokemon"
 
 mlflow run https://github.com/pengfei99/mlflow-pokemon-example.git -P remote_server_uri=$MLFLOW_TRACKING_URI -P experiment_name=$MLFLOW_EXPERIMENT_NAME \

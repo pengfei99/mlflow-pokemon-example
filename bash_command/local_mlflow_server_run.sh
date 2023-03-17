@@ -1,3 +1,8 @@
+#! /bin/bash
+
+# this script is design to run a local mlflow server which uses local file system
+# to store the model. So no need for set up s3 creds here.
+
 export MLFLOW_TRACKING_URI='http://pengfei.org:8000'
 export MLFLOW_EXPERIMENT_NAME="test-2"
 
